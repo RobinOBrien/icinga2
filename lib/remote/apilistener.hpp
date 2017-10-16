@@ -104,6 +104,10 @@ public:
 	static bool IsHACluster(void);
 	static String GetFromZoneName(const Zone::Ptr& fromZone);
 
+	static String GetDefaultCertPath(void);
+	static String GetDefaultKeyPath(void);
+	static String GetDefaultCaPath(void);
+
 protected:
 	virtual void OnConfigLoaded(void) override;
 	virtual void OnAllConfigLoaded(void) override;
