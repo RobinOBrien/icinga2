@@ -41,6 +41,9 @@ Example:
 
 ```
 object ApiListener "api" {
+  accept_commands = true
+  accept_config = true
+
   ticket_salt = TicketSalt
 }
 ```
@@ -65,7 +68,17 @@ Configuration Attributes:
   access\_control\_allow\_headers       | String                | **Optional.** Used in response to a preflight request to indicate which HTTP headers can be used when making the actual request. Defaults to `Authorization`. [(MDN docs)](https://developer.mozilla.org/en-US/docs/Web/HTTP/Access_control_CORS#Access-Control-Allow-Headers)
   access\_control\_allow\_methods       | String                | **Optional.** Used in response to a preflight request to indicate which HTTP methods can be used when making the actual request. Defaults to `GET, POST, PUT, DELETE`. [(MDN docs)](https://developer.mozilla.org/en-US/docs/Web/HTTP/Access_control_CORS#Access-Control-Allow-Methods)
 
-The ApiListener type expects its certificate files to be in `LocalStateDir + "/lib/icinga2/certs/" + NodeName + ".key"` (private key), `LocalStateDir + "/lib/icinga2/certs/" + NodeName + ".crt"` (certificate file) and `LocalStateDir + "/lib/icinga2/certs/ca.crt"` (CA certificate file). If the deprecated attributes `cert_path`, `key_path` and/or `ca_path` are specified Icinga copies those files to the new location in `LocalStateDir + "/lib/icinga2/certs"` unless the file(s) there are newer.
+The ApiListener type expects its certificate files to be in the following locations:
+
+  Type                 | Location
+  ---------------------|-------------------------------------
+  Private key          | `LocalStateDir + "/lib/icinga2/certs/" + NodeName + ".key"`
+  Certificate file     | `LocalStateDir + "/lib/icinga2/certs/" + NodeName + ".crt"`
+  CA certificate file  | `LocalStateDir + "/lib/icinga2/certs/ca.crt"`
+
+If the deprecated attributes `cert_path`, `key_path` and/or `ca_path` are specified Icinga 2
+copies those files to the new location in `LocalStateDir + "/lib/icinga2/certs"` unless the
+file(s) there are newer.
 
 ## ApiUser <a id="objecttype-apiuser"></a>
 
